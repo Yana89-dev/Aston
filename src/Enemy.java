@@ -1,10 +1,9 @@
-public class Enemy implements Mortal {
+public abstract class Enemy implements Mortal {
     private int health;
 
     public Enemy(int health) {
         this.health = health;
     }
-
 
     public void setHealth(int health) {
         this.health = health;
@@ -14,11 +13,14 @@ public class Enemy implements Mortal {
         return health;
     }
 
-    public void takeDamage(int damage) {
-        health -= damage;
+    public void takeDamage(int damage, Hero hero) {
+        if (health < damage)
+            health = 0;
+        else
+            health -= damage;
     }
 
-    public void attackEnemy(Hero hero){};
+    protected abstract void attackHero(Hero hero);
 
     @Override
     public boolean isAlive() {

@@ -1,14 +1,22 @@
 public class TrainingGround {
     public static void main(String[] args) {
-        Enemy enemy = new Enemy(500);
-      //  Hero hero = new Hero();
-      //  hero.attackEnemy(enemy);
-        Warrior warrior = new Warrior(500);
-        warrior.attackEnemy(enemy);
-        Mage mage = new Mage(300);
-        mage.attackEnemy(enemy);
-        Archer archer= new Archer(200);
-        archer.attackEnemy(enemy);
+        Hero warrior = new Warrior("Mark");
+        warrior.setHealth(300);
+        Hero mage = new Mage("Aramis");
+        warrior.setHealth(200);
+        Hero archer= new Archer("Dallas");
+        Enemy zombie = new Zombie(300);
+        Enemy witch = new Witch(500);
+
+        int count = 0;
+        while (count<=15){
+            warrior.attackEnemy(zombie);
+            count++;
+        }
+
+        while (archer.isAlive()){
+            zombie.attackHero(archer);
+        }
 
     }
 }

@@ -10,15 +10,23 @@ abstract public class Hero implements Mortal {
         this.health = health;
     }
 
-    public Hero(int health) {
-        this.health = health;
+    public Hero(String name) {
+        this.name = name;
+        this.health = 300;
     }
 
     public String getName() {
         return name;
     }
 
-    public abstract void attackEnemy(Enemy enemy);
+    public void takeDamage(int damage) {
+        if (health < damage)
+            health = 0;
+        else
+            health -= damage;
+    }
+
+    protected abstract void attackEnemy(Enemy enemy);
 
     @Override
     public boolean isAlive() {

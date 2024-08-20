@@ -1,12 +1,24 @@
 public class Mage extends Hero {
-    public Mage(int health) {
-        super(health);
+    static final private int damage = 30;
+
+    public Mage(String name) {
+        super(name);
+    }
+
+    public Mage() {
+        super("Mage");
     }
 
     @Override
-    public void attackEnemy(Enemy enemy) {
-        System.out.println("Mage attacks enemy");
-        enemy.takeDamage(30);
-        System.out.println("The enemy has health " + enemy.getHealth());
+    protected void attackEnemy(Enemy enemy) {
+        if (!this.isAlive()) return;
+        System.out.println("Mage "  + this.getName() + " attacks enemy" );
+        if (enemy.isAlive()){
+            enemy.takeDamage(damage, this);
+            System.out.println("The enemy has health " + enemy.getHealth());
+        }
+        else {
+            System.out.println("The enemy has already been killed");
+        }
     }
 }
